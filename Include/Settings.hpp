@@ -12,7 +12,7 @@ struct Settings {
 	std::string display_title;
 };
 
-std::vector<std::string split(const std::string&, const char);
+std::vector<std::string> split(const std::string&, const char);
 Settings parse(std::istream& input, const char);
 
 #endif

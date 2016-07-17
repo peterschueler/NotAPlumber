@@ -6,6 +6,8 @@
 
 #include <vector>
 
+#include "Commands/Command.hpp"
+
 class Game : public sf::NonCopyable {
 public:
 	explicit Game(sf::RenderWindow&);

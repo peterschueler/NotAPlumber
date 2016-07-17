@@ -2,7 +2,7 @@
 #include "../Include/States/MenuState.hpp"
 #include "../Include/States/GameState.hpp"
 
-const sf::Time Application::secondsFramesRatio = sf::seconds(1.f,60.f);
+const sf::Time Application::secondsFramesRatio = sf::seconds(1.f/60.f);
 
 Application::Application() : window(sf::VideoMode(800,576), "NotAPlumber") {
 	enterState(new MenuState(window));

@@ -3,7 +3,7 @@
 #include <sstream>
 
 std::vector<std::string> split(const std::string& line, const char character) {
-	std::vector<std::string> result;
+	std::vector<std::string> results;
 	std::string::size_type i = 0;
 	
 	while (i != line.size() && isspace(line[i])) {
@@ -19,7 +19,7 @@ std::vector<std::string> split(const std::string& line, const char character) {
 		results.push_back(line.substr(i, j-i));
 		i = j;
 	}
-	return result;
+	return results;
 }
 
 Settings parse(std::istream& input, const char character) {
@@ -29,7 +29,7 @@ Settings parse(std::istream& input, const char character) {
 		std::vector<std::string> settings = split(line, character);
 		if (settings.front() == "display_x") {
 			std::stringstream(settings.back()) >> newSettings.display_x;
-		} else if (setttings.front() == "display_y") {
+		} else if (settings.front() == "display_y") {
 			std::stringstream(settings.back()) >> newSettings.display_y;
 		} else if (settings.front() == "display_title") {
 			newSettings.display_title = settings.back();

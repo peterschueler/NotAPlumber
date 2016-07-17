@@ -5,7 +5,7 @@ MenuState::MenuState(sf::RenderWindow& win) : window(&win), handler(), gameStart
 }
 
 bool MenuState::processInput(sf::Event& event) {
-	while (window->pollevent(event)) {
+	while (window->pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window->close();
 		} else if (event.type == sf::Event::KeyPressed) {
@@ -23,7 +23,9 @@ bool MenuState::update(sf::Time delta) {
 }
 
 void MenuState::onEntry(State* previousState) {
-	delete previousState;
+	if (previousState != nullptr) {
+// 		delete previousState;
+	}
 }
 
 State* MenuState::onExit() {

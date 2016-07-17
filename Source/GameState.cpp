@@ -1,14 +1,15 @@
 #include "../Include/States/GameState.hpp"
+#include "../Include/States/MenuState.hpp"
 
 GameState::GameState(sf::RenderWindow& win) : window(&win), game(win), handler(), isPaused(false) {
 }
 
-void GameState::processInput(sf::Event& event) {
+bool GameState::processInput(sf::Event& event) {
 	while (window->pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window->close();
 		} else if (event.type == sf::Event::KeyPressed) {
-			if (event.key.code == sf::Keyboard::ESC) {
+			if (event.key.code == sf::Keyboard::Space) {
 				isPaused ? isPaused = false : isPaused = true;
 			} else if (event.key.code == sf::Keyboard::Q) {
 				window->close();
@@ -16,6 +17,7 @@ void GameState::processInput(sf::Event& event) {
 		}
 		game.input(handler.handleInput(event));
 	}
+	return true;
 }
 
 bool GameState::update(sf::Time delta) {
@@ -29,15 +31,15 @@ bool GameState::update(sf::Time delta) {
 }
 
 void GameState::onEntry(State* previousState) {
-	delete previousState;
+// 	delete previousState;
 }
 
 State* GameState::onExit() {
-	return new State();
+	return new MenuState(*window);
 }
 
 void GameState::render() {
 	window->clear();
 	game.draw();
-	window->display;
+	window->display();
 }

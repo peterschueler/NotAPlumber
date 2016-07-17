@@ -3,6 +3,7 @@
 
 #include "State.hpp"
 #include "../Include/InputHandler.hpp"
+#include "../Menu.hpp"
 
 class MenuState : public State {
 public:
@@ -18,9 +19,9 @@ private:
 	sf::RenderWindow* window;
 	InputHandler handler;
 	
-	bool gameStated;
+	bool gameStarted;
 	
 	Menu menu;
-}
+};
 
 #endif

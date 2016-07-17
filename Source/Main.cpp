@@ -8,8 +8,8 @@
 int main() {
 	try {
 		std::cout << "***\n\nWelcome to NotAPlubmer!\n\n***" << std::endl;
-		Application app();
-		app.run():
+		Application app;
+		app.run();
 	} catch (std::exception& e) {
 		std::cout << "\nFAILED: " <<e.what() << std::endl;
 	}
