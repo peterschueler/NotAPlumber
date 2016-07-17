@@ -1,14 +1,14 @@
-#ifndef WORLD_HPP
-#define WORLD_HPP
+#ifndef GAME_HPP
+#define GAME_HPP
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
 #include <vector>
 
-class World : public sf::NonCopyable {
+class Game : public sf::NonCopyable {
 public:
-	explicit World(sf::RenderWindow&);
+	explicit Game(sf::RenderWindow&);
 	
 	bool update(sf::Time time);
 	void draw();
