@@ -19,7 +19,15 @@ public:
 	
 private:
 	sf::RenderWindow& window;
+	sf::View viewPort;
 	sf::FloatRect bounds;
+	
+	sf::Sprite clouds;
+	sf::Texture cloudsTexture;
+	sf::Sprite sky;
+	sf::Texture skyTexture;
+	sf::Sprite mountains;
+	sf::Texture mountainsTexture;
 };
 
 #endif
