@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <string>
+
 class Entity : public sf::Drawable, public sf::Transformable {
 public:
 	Entity();
@@ -10,16 +12,13 @@ public:
 	
 	virtual sf::FloatRect borders() const;
 	
-	void setDirection(float, float);
-	sf::Vector2f getDirection() const;
-	
 protected:
 	virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
-	virtual void attachTexture();
+	virtual void attachTexture(std::string);
 	
 private:
 	sf::Sprite sprite;
-	sf::Vector2f direction;
+	sf::Texture texture;
 };
 
 #endif

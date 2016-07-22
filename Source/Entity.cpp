@@ -1,7 +1,9 @@
 #include "../Include/Entities/Entity.hpp"
 
+#include <iostream>
+
 Entity::Entity() {
-	attachTexture();
+	attachTexture("Assets/Textures/Default.png");
 }
 
 void Entity::update(sf::Time delta) {
@@ -13,19 +15,17 @@ void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(sprite, states);
 }
 
-void Entity::attachTexture() {
+void Entity::attachTexture(std::string path) {
+	sf::IntRect rect = sf::IntRect(borders());
+	if (texture.loadFromFile(path)) {
+		sprite.setTexture(texture);
+		sprite.setTextureRect(rect);
+	} else {
+		std::cout << "Couldn't attach texture to sprite! Add error handling for this." << std::endl;
+	}
 }
 
 sf::FloatRect Entity::borders() const {
 	sf::FloatRect bounds = getTransform().transformRect(sprite.getGlobalBounds());
 	return bounds;
-}
-
-void Entity::setDirection(float x, float y) {
-	direction.x = x;
-	direction.y = y;
-}
-
-sf::Vector2f Entity::getDirection() const {
-	return direction;
 }
