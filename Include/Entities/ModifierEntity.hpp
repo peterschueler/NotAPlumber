@@ -6,12 +6,16 @@
 class ModifierEntity : public Entity {
 public:
 	ModifierEntity();
-	ModifierEntity(CharacterEntity::Type);
+	ModifierEntity(CharacterEntity::Modifier);
 	virtual void update(sf::Time);
+	
+	CharacterEntity::Modifier getModifierType() const;
 	
 private:
 	sf::Sprite sprite;
 	sf::Texture texture;
+	
+	CharacterEntity::Modifier modifier;
 };
 
 #endif
