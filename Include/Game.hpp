@@ -8,6 +8,7 @@
 
 #include "Commands/Command.hpp"
 #include "GameBackground.hpp"
+#include "GameForeground.hpp"
 
 class Game : public sf::NonCopyable {
 public:
@@ -24,6 +25,7 @@ private:
 	sf::FloatRect bounds;
 	
 	GameBackground background;
+	GameForeground foreground;
 };
 
 #endif
