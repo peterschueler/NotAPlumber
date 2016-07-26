@@ -9,6 +9,9 @@ public:
 	ModifierEntity(CharacterEntity::Modifier);
 	virtual void update(sf::Time);
 	
+	void setDirection(float, float);
+	sf::Vector2f getDirection() const;
+	
 	CharacterEntity::Modifier getModifierType() const;
 	
 private:

@@ -24,8 +24,6 @@ GameBackground::GameBackground(sf::RenderWindow& window) : window(window), viewP
 }
 
 bool GameBackground::update(sf::Time delta) {
-	viewPort.move(30.f * delta.asSeconds(), 0.f);
-	clouds.move(35.f * delta.asSeconds(), 0.f);
 	return true;
 }
 
@@ -34,4 +32,8 @@ void GameBackground::draw() {
 	window.draw(sky);
 	window.draw(clouds);
 	window.draw(mountains);
+}
+
+void GameBackground::move(float vx, float vy) {
+	viewPort.move(vx, vy);
 }

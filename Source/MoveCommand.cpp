@@ -6,5 +6,5 @@ MoveCommand::MoveCommand(float vx, float vy) : x(vx), y(vy) {
 }
 
 void MoveCommand::execute(Entity& entity) {
-// 	entity.setDirection(x, y);
+	entity.setDirection(x, y);
 }

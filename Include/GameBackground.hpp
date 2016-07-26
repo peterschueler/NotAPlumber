@@ -13,6 +13,8 @@ public:
 	
 	void draw();
 	
+	void move(float, float);
+	
 private:
 	sf::RenderWindow& window;
 	sf::View viewPort;

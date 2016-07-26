@@ -30,6 +30,10 @@ public:
 	
 	void setModifier(Modifier);
 	
+protected:	
+	virtual void attachTexture(std::string);
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	
 private:
 	sf::Sprite sprite;
 	sf::Texture texture;

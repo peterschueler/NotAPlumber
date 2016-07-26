@@ -9,6 +9,7 @@
 #include "Commands/Command.hpp"
 #include "GameBackground.hpp"
 #include "GameForeground.hpp"
+#include "Entities/CharacterEntity.hpp"
 
 class Game : public sf::NonCopyable {
 public:
@@ -26,6 +27,8 @@ private:
 	
 	GameBackground background;
 	GameForeground foreground;
+	
+	CharacterEntity* character;
 };
 
 #endif

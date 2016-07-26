@@ -10,7 +10,7 @@ bool GameState::processInput(sf::Event& event) {
 			window->close();
 		} else if (event.type == sf::Event::KeyPressed) {
 			if (event.key.code == sf::Keyboard::Space) {
-				isPaused ? isPaused = false : isPaused = true;
+				setPause();
 			} else if (event.key.code == sf::Keyboard::Q) {
 				window->close();
 			}
@@ -42,4 +42,12 @@ void GameState::render() {
 	window->clear();
 	game.draw();
 	window->display();
+}
+
+void GameState::setPause() {
+	isPaused = !isPaused;
+}
+
+bool GameState::getPause() {
+	return isPaused;
 }

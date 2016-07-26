@@ -15,6 +15,9 @@ public:
 	State* onExit();
 	void render();
 	
+	void setPause();
+	bool getPause();
+	
 private:
 	sf::RenderWindow* window;
 	InputHandler handler;

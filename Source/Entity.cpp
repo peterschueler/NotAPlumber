@@ -3,7 +3,7 @@
 #include <iostream>
 
 Entity::Entity() {
-	attachTexture("Assets/Textures/Default.png");
+// 	attachTexture("Assets/Textures/Default.png");
 }
 
 void Entity::update(sf::Time delta) {
@@ -16,10 +16,8 @@ void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 void Entity::attachTexture(std::string path) {
-	sf::IntRect rect = sf::IntRect(borders());
 	if (texture.loadFromFile(path)) {
 		sprite.setTexture(texture);
-		sprite.setTextureRect(rect);
 	} else {
 		std::cout << "Couldn't attach texture to sprite! Add error handling for this." << std::endl;
 	}
