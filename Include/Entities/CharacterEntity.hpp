@@ -23,6 +23,8 @@ public:
 	void setDirection(float, float);
 	sf::Vector2f getDirection() const;
 	
+	void setGrounded();
+	
 	void hit(unsigned int);
 	unsigned int getHitPoints() const;
 	
@@ -38,6 +40,12 @@ private:
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::Vector2f direction;
+	
+	sf::Vector2f position;
+	sf::Vector2f velocity;
+	sf::Vector2f acceleration;
+	
+	bool isGrounded;
 	
 	Type type;
 	

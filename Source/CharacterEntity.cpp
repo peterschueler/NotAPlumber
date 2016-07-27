@@ -8,15 +8,24 @@ CharacterEntity::CharacterEntity() : sprite(), texture(), hitpoints(100), type(m
 
 CharacterEntity::CharacterEntity(Type type, unsigned int hits) : sprite(), texture(), hitpoints(hits), type(type) {
 	attachTexture("Assets/Textures/Character.png");
+	acceleration = sf::Vector2f(0.f, 3.81);
+	isGrounded = false;
 }
 
 void CharacterEntity::update(sf::Time delta) {
-	move(direction * delta.asSeconds());
+	std::cout << position.y << std::endl;
+	velocity += acceleration * delta.asSeconds();
+	position += velocity * delta.asSeconds();
+	if (position.y > 1) {
+		position.y--;
+	} else {
+		move(position);
+	}
 }
 
 void CharacterEntity::setDirection(float x, float y) {
-	direction.x = x;
-	direction.y = y;
+	velocity.x = x;
+	velocity.y = y;
 }
 
 sf::Vector2f CharacterEntity::getDirection() const {
@@ -48,4 +57,8 @@ void CharacterEntity::attachTexture(std::string path) {
 	} else {
 		std::cout << "Couldn't attach texture to sprite! Add error handling for this." << std::endl;
 	}
+}
+
+void CharacterEntity::setGrounded() {
+	isGrounded = !isGrounded;
 }

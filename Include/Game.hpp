@@ -8,8 +8,8 @@
 
 #include "Commands/Command.hpp"
 #include "GameBackground.hpp"
-#include "GameForeground.hpp"
 #include "Entities/CharacterEntity.hpp"
+#include "Entities/RoadEntity.hpp"
 
 class Game : public sf::NonCopyable {
 public:
@@ -21,12 +21,17 @@ public:
 	void input(Command*);
 	
 private:
+		void addRoadBlock(float, float);
+		
+private:
 	sf::RenderWindow& window;
 	sf::View viewPort;
 	sf::FloatRect bounds;
 	
+	std::vector<RoadEntity*> roads;
+	sf::Texture roadTexture;
+	
 	GameBackground background;
-	GameForeground foreground;
 	
 	CharacterEntity* character;
 };

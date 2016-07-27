@@ -9,7 +9,7 @@ bool GameState::processInput(sf::Event& event) {
 		if (event.type == sf::Event::Closed) {
 			window->close();
 		} else if (event.type == sf::Event::KeyPressed) {
-			if (event.key.code == sf::Keyboard::Space) {
+			if (event.key.code == sf::Keyboard::Escape) {
 				setPause();
 			} else if (event.key.code == sf::Keyboard::Q) {
 				window->close();
