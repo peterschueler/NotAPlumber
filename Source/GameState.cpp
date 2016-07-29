@@ -2,6 +2,7 @@
 #include "../Include/States/MenuState.hpp"
 
 GameState::GameState(sf::RenderWindow& win) : window(&win), game(win), handler(), isPaused(false) {
+	window->setKeyRepeatEnabled(false);
 }
 
 bool GameState::processInput(sf::Event& event) {

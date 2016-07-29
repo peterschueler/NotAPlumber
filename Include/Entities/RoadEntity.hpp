@@ -9,7 +9,9 @@ public:
 	RoadEntity(float, float);
 	virtual void update(sf::Time);
 	
-	virtual void setDirection(float, float);
+	virtual void setVelocity(float, float);
+	
+	virtual sf::FloatRect borders() const;
 	
 protected:
 	virtual void draw(sf::RenderTarget&, sf::RenderStates) const;

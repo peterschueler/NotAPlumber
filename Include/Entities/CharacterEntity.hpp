@@ -12,7 +12,13 @@ public:
 	enum Modifier {
 		invicible,
 		superfast,
-		levitating
+		levitating,
+		none
+	};
+	enum Direction {
+		left,
+		right,
+		still
 	};
 public:
 	CharacterEntity();
@@ -20,10 +26,15 @@ public:
 	virtual void update(sf::Time);
 	
 	// encompasses walking (+x) and jumping (+y)
-	void setDirection(float, float);
-	sf::Vector2f getDirection() const;
+	void setVelocity(float, float);
+	sf::Vector2f setVelocity() const;
 	
-	void setGrounded();
+	virtual sf::FloatRect borders() const;
+	
+	virtual void applyGravity(bool);
+	
+	float getGrounded() const;
+	void setGrounded(float);
 	
 	void hit(unsigned int);
 	unsigned int getHitPoints() const;
@@ -39,18 +50,20 @@ protected:
 private:
 	sf::Sprite sprite;
 	sf::Texture texture;
-	sf::Vector2f direction;
 	
-	sf::Vector2f position;
 	sf::Vector2f velocity;
-	sf::Vector2f acceleration;
+	sf::Vector2f gravity;
+	bool gravityOn;
+	float bottom;
 	
-	bool isGrounded;
+	bool isJumping;
 	
 	Type type;
 	
+	Direction walkingDirection;
+	
 	unsigned int hitpoints;
-	Modifier modified;
+	Modifier modification;
 };
 
 #endif

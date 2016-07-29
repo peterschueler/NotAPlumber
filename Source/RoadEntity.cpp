@@ -13,7 +13,7 @@ RoadEntity::RoadEntity(float x, float y) : sprite(), texture(), length(x), heigh
 void RoadEntity::update(sf::Time delta) {
 }
 
-void RoadEntity::setDirection(float x, float y) {
+void RoadEntity::setVelocity(float x, float y) {
 }
 
 void RoadEntity::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -29,4 +29,9 @@ void RoadEntity::attachTexture(std::string path) {
 	} else {
 		std::cout << "Couldn't attach texture to sprite! Add error handling for this." << std::endl;
 	}
+}
+
+sf::FloatRect RoadEntity::borders() const {
+	sf::FloatRect bounds = getTransform().transformRect(sprite.getGlobalBounds());
+	return bounds;
 }

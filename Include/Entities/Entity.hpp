@@ -12,7 +12,10 @@ public:
 	
 	virtual sf::FloatRect borders() const;
 	
-	virtual void setDirection(float, float) = 0;
+	virtual void setVelocity(float, float) = 0;
+	virtual sf::Vector2f setVelocity() const;
+	
+	virtual void applyGravity(bool);
 	
 protected:
 	// if one is overridden, the other one must be overridden as well!
@@ -22,6 +25,10 @@ protected:
 private:
 	sf::Sprite sprite;
 	sf::Texture texture;
+	bool isGrounded;
+	
+	sf::Vector2f gravity;
+	bool gravityOn;
 };
 
 #endif

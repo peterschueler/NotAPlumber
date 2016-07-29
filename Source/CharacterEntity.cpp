@@ -6,30 +6,44 @@ CharacterEntity::CharacterEntity() : sprite(), texture(), hitpoints(100), type(m
 	attachTexture("Assets/Textures/Character.png");
 }
 
-CharacterEntity::CharacterEntity(Type type, unsigned int hits) : sprite(), texture(), hitpoints(hits), type(type) {
+CharacterEntity::CharacterEntity(Type type, unsigned int hits) : sprite(), texture(), velocity(sf::Vector2f(0.f, 0.f)), gravity(sf::Vector2f(0.f, 300.f)), gravityOn(false), bottom(200.f), isJumping(false), type(type), walkingDirection(still), hitpoints(hits), modification(none) {
 	attachTexture("Assets/Textures/Character.png");
-	acceleration = sf::Vector2f(0.f, 3.81);
-	isGrounded = false;
 }
 
 void CharacterEntity::update(sf::Time delta) {
-	std::cout << position.y << std::endl;
-	velocity += acceleration * delta.asSeconds();
-	position += velocity * delta.asSeconds();
-	if (position.y > 1) {
-		position.y--;
-	} else {
-		move(position);
+	if (gravityOn && !isJumping) {
+		velocity.y = -gravity.y;
+		isJumping = true;
+		gravityOn = false;
+	}
+	if (isJumping) {
+		velocity.y += (gravity.y * delta.asSeconds());
+		if (walkingDirection == right) {
+			velocity.x += (gravity.y * delta.asSeconds());
+		} else if (walkingDirection == left) {
+			velocity.x -= (gravity.y * delta.asSeconds());
+		}
+		
+	}
+	move(velocity * delta.asSeconds());
+	
+	if (getPosition().y >= bottom) {
+		setGrounded(bottom);
 	}
 }
 
-void CharacterEntity::setDirection(float x, float y) {
+void CharacterEntity::setVelocity(float x, float y) {
+	if (x == 100) {
+		walkingDirection = right;
+	} else if (x == -100) {
+		walkingDirection = left;
+	}
 	velocity.x = x;
 	velocity.y = y;
 }
 
-sf::Vector2f CharacterEntity::getDirection() const {
-	return direction;
+sf::Vector2f CharacterEntity::setVelocity() const {
+	return velocity;
 }
 
 void CharacterEntity::hit(unsigned int points) {
@@ -53,12 +67,28 @@ void CharacterEntity::draw(sf::RenderTarget& target, sf::RenderStates states) co
 void CharacterEntity::attachTexture(std::string path) {
 	if (texture.loadFromFile(path)) {
 		sprite.setTexture(texture);
-		sprite.setTextureRect(sf::IntRect(0,0,64,64));
+		sprite.setTextureRect(sf::IntRect(64,64,128,128));
 	} else {
 		std::cout << "Couldn't attach texture to sprite! Add error handling for this." << std::endl;
 	}
 }
 
-void CharacterEntity::setGrounded() {
-	isGrounded = !isGrounded;
+sf::FloatRect CharacterEntity::borders() const {
+	sf::FloatRect bounds = getTransform().transformRect(sprite.getGlobalBounds());
+	return bounds;
+}
+
+void CharacterEntity::applyGravity(bool now) {
+	gravityOn = now;
+}
+
+float CharacterEntity::getGrounded() const {
+	return bottom;
+}
+
+void CharacterEntity::setGrounded(float ground) {
+	setPosition(sf::Vector2f(getPosition().x, ground));
+	isJumping = false;
+	walkingDirection = still;
+	bottom = ground;
 }

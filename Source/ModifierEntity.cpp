@@ -13,9 +13,9 @@ CharacterEntity::Modifier ModifierEntity::getModifierType() const {
 	return modifier;
 }
 
-void ModifierEntity::setDirection(float x, float y) {
+void ModifierEntity::setVelocity(float x, float y) {
 }
 
-sf::Vector2f ModifierEntity::getDirection() const {
+sf::Vector2f ModifierEntity::setVelocity() const {
 	return sf::Vector2f();
 }

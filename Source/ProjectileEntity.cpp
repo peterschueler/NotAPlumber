@@ -13,11 +13,11 @@ unsigned int ProjectileEntity::getStrength() const {
 	return stregth;
 }
 
-void ProjectileEntity::setDirection(float x, float y) {
+void ProjectileEntity::setVelocity(float x, float y) {
 	direction.x += x;
 	direction.y += y;
 }
 
-sf::Vector2f ProjectileEntity::getDirection() const {
+sf::Vector2f ProjectileEntity::setVelocity() const {
 	return direction;
 }

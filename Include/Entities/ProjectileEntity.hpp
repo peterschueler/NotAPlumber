@@ -17,8 +17,8 @@ public:
 	
 	unsigned int getStrength() const;
 	
-	void setDirection(float, float);
-	sf::Vector2f getDirection() const;
+	void setVelocity(float, float);
+	sf::Vector2f setVelocity() const;
 
 private:
 	sf::Sprite sprite;

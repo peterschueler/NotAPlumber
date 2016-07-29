@@ -27,3 +27,11 @@ sf::FloatRect Entity::borders() const {
 	sf::FloatRect bounds = getTransform().transformRect(sprite.getGlobalBounds());
 	return bounds;
 }
+
+sf::Vector2f Entity::setVelocity() const {
+	return sf::Vector2f();
+}
+
+void Entity::applyGravity(bool now) {
+	gravityOn = now;
+}
