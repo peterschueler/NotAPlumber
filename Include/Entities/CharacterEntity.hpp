@@ -27,7 +27,7 @@ public:
 	
 	// encompasses walking (+x) and jumping (+y)
 	void setVelocity(float, float);
-	sf::Vector2f setVelocity() const;
+	sf::Vector2f getVelocity() const;
 	
 	virtual sf::FloatRect borders() const;
 	

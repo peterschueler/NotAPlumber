@@ -28,7 +28,7 @@ bool CompareRoads(RoadEntity* a, RoadEntity* b) {
 
 bool Game::update(sf::Time delta) {
 	character->update(delta);
-	background.move(character->setVelocity().x * delta.asSeconds(), 0);
+	background.move(character->getVelocity().x * delta.asSeconds(), 0);
 	
 	auto characterWidth = character->getPosition().x + character->borders().width;
 	
@@ -39,6 +39,10 @@ bool Game::update(sf::Time delta) {
 		if (characterOverFloor) {
 			roadsToCheck.push_back(road);
 		}
+	}
+	
+	if (roadsToCheck.size() == 0) {
+		character->setVelocity(character->getVelocity().x, 100);
 	}
 	
 	for (auto road : roadsToCheck) {
@@ -55,7 +59,7 @@ bool Game::update(sf::Time delta) {
 		if (distanceBetweenObjects < 0) {
 			character->setGrounded(road->getPosition().y - character->borders().height);
 		} else if (distanceBetweenObjects > 30 && characterHighground && !character->getJumping()) {
-			character->setGrounded(road->getPosition().y - character->borders().height);
+			character->setVelocity(character->getVelocity().x, 100);
 		}
 	}
 	return true;

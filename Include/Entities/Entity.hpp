@@ -13,7 +13,7 @@ public:
 	virtual sf::FloatRect borders() const;
 	
 	virtual void setVelocity(float, float) = 0;
-	virtual sf::Vector2f setVelocity() const;
+	virtual sf::Vector2f getVelocity() const;
 	
 	virtual void applyGravity(bool);
 	

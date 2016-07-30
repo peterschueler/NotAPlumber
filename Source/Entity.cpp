@@ -28,7 +28,7 @@ sf::FloatRect Entity::borders() const {
 	return bounds;
 }
 
-sf::Vector2f Entity::setVelocity() const {
+sf::Vector2f Entity::getVelocity() const {
 	return sf::Vector2f();
 }
 

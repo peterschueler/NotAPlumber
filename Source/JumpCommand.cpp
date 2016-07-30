@@ -6,7 +6,6 @@ JumpCommand::JumpCommand(float vx, float vy) : x(vx), y(vy) {
 }
 
 void JumpCommand::execute(Entity& entity) {
-	entity.setVelocity(entity.setVelocity().x, y);
-	std::cout << entity.setVelocity().x << std::endl;
+	entity.setVelocity(entity.getVelocity().x, y);
 	entity.applyGravity(true);
 }

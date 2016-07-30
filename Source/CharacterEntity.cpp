@@ -38,7 +38,7 @@ void CharacterEntity::setVelocity(float x, float y) {
 	velocity.y = y;
 }
 
-sf::Vector2f CharacterEntity::setVelocity() const {
+sf::Vector2f CharacterEntity::getVelocity() const {
 	return velocity;
 }
 
