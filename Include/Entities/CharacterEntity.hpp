@@ -36,6 +36,8 @@ public:
 	float getGrounded() const;
 	void setGrounded(float);
 	
+	bool getJumping() const;
+	
 	void hit(unsigned int);
 	unsigned int getHitPoints() const;
 	

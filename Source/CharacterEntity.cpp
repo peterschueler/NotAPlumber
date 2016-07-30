@@ -26,10 +26,6 @@ void CharacterEntity::update(sf::Time delta) {
 		
 	}
 	move(velocity * delta.asSeconds());
-	
-	if (getPosition().y >= bottom) {
-		setGrounded(bottom);
-	}
 }
 
 void CharacterEntity::setVelocity(float x, float y) {
@@ -67,7 +63,7 @@ void CharacterEntity::draw(sf::RenderTarget& target, sf::RenderStates states) co
 void CharacterEntity::attachTexture(std::string path) {
 	if (texture.loadFromFile(path)) {
 		sprite.setTexture(texture);
-		sprite.setTextureRect(sf::IntRect(64,64,128,128));
+		sprite.setTextureRect(sf::IntRect(64,64,64,64));
 	} else {
 		std::cout << "Couldn't attach texture to sprite! Add error handling for this." << std::endl;
 	}
@@ -91,4 +87,8 @@ void CharacterEntity::setGrounded(float ground) {
 	isJumping = false;
 	walkingDirection = still;
 	bottom = ground;
+}
+
+bool CharacterEntity::getJumping() const {
+	return isJumping;
 }
