@@ -3,11 +3,11 @@
 #include <iostream>
 
 CharacterEntity::CharacterEntity() : sprite(), texture(), hitpoints(100), type(monster) {
-	attachTexture("Assets/Textures/Character.png");
+	attachTexture("Assets/Textures/Glitchy.png");
 }
 
-CharacterEntity::CharacterEntity(Type type, unsigned int hits) : sprite(), texture(), velocity(sf::Vector2f(0.f, 0.f)), gravity(sf::Vector2f(0.f, 300.f)), gravityOn(false), bottom(200.f), isJumping(false), type(type), walkingDirection(still), hitpoints(hits), modification(none) {
-	attachTexture("Assets/Textures/Character.png");
+CharacterEntity::CharacterEntity(Type type, unsigned int hits) : sprite(), texture(), velocity(sf::Vector2f(0.f, 0.f)), gravity(sf::Vector2f(0.f, 300.f)), gravityOn(false), bottom(200.f), isJumping(false), type(type), walkingDirection(still), hitpoints(hits), modification(none), currentStep(first_x) {
+	attachTexture("Assets/Textures/Glitchy.png");
 }
 
 void CharacterEntity::update(sf::Time delta) {
@@ -23,7 +23,6 @@ void CharacterEntity::update(sf::Time delta) {
 		} else if (walkingDirection == left) {
 			velocity.x -= (gravity.y * delta.asSeconds());
 		}
-		
 	}
 	move(velocity * delta.asSeconds());
 }
@@ -36,6 +35,7 @@ void CharacterEntity::setVelocity(float x, float y) {
 	}
 	velocity.x = x;
 	velocity.y = y;
+	animate();
 }
 
 sf::Vector2f CharacterEntity::getVelocity() const {
@@ -63,7 +63,7 @@ void CharacterEntity::draw(sf::RenderTarget& target, sf::RenderStates states) co
 void CharacterEntity::attachTexture(std::string path) {
 	if (texture.loadFromFile(path)) {
 		sprite.setTexture(texture);
-		sprite.setTextureRect(sf::IntRect(64,64,64,64));
+		sprite.setTextureRect(sf::IntRect(0,0,64,64));
 	} else {
 		std::cout << "Couldn't attach texture to sprite! Add error handling for this." << std::endl;
 	}
@@ -76,6 +76,44 @@ sf::FloatRect CharacterEntity::borders() const {
 
 void CharacterEntity::applyGravity(bool now) {
 	gravityOn = now;
+}
+
+void CharacterEntity::animate() {
+	if (walkingDirection == right) {
+		if (currentStep == first_y || currentStep == second_y || currentStep == third_y) {
+			currentStep = first_x;
+		}
+		if (currentStep == first_x) {
+			sf::IntRect rect(0,0,64,64);
+			sprite.setTextureRect(rect);
+			currentStep = second_x;
+		} else if (currentStep == second_x) {
+			sf::IntRect rect(64,0,64,64);
+			sprite.setTextureRect(rect);
+			currentStep = third_x;
+		} else if (currentStep == third_x) {
+			sf::IntRect rect(128,0,64,64);
+			sprite.setTextureRect(rect);
+			currentStep = first_x;
+		}
+	} else if (walkingDirection == left) {
+		if (currentStep == first_x || currentStep == second_x || currentStep == third_x) {
+			currentStep = first_y;
+		}
+		if (currentStep == first_y) {
+			sf::IntRect rect(0,64,64,64);
+			sprite.setTextureRect(rect);
+			currentStep = second_y;
+		} else if (currentStep == second_y) {
+			sf::IntRect rect(64,64,64,64);
+			sprite.setTextureRect(rect);
+			currentStep = third_y;
+		} else if (currentStep == third_y) {
+			sf::IntRect rect(128,64,64,64);
+			sprite.setTextureRect(rect);
+			currentStep = first_y;
+		}
+	}
 }
 
 float CharacterEntity::getGrounded() const {

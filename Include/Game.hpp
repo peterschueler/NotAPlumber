@@ -22,6 +22,7 @@ public:
 	
 private:
 		void addRoadBlock(float, float);
+		void checkCollision(Entity*);
 		
 private:
 	sf::RenderWindow& window;
@@ -34,6 +35,7 @@ private:
 	GameBackground background;
 	
 	CharacterEntity* character;
+	float timer;
 };
 
 #endif

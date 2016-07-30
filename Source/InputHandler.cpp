@@ -10,7 +10,7 @@ Command* InputHandler::handleInput(const sf::Event& event) {
 			return new MoveCommand(-100.f, 0.f);
 		} else if (event.key.code == sf::Keyboard::Right) {
 			return new MoveCommand(100.f, 0.f);
-		} else if (event.key.code == sf::Keyboard::Space) {
+		} else if (event.key.code == sf::Keyboard::Up) {
 			return new JumpCommand(0.f, -400.f);
 		}
 	}

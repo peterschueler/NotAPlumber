@@ -7,7 +7,7 @@ RoadEntity::RoadEntity() : sprite(), texture(), length(192), height(64) {
 }
 
 RoadEntity::RoadEntity(float x, float y) : sprite(), texture(), length(x), height(y) {
-	attachTexture("Assets/Textures/YellowBricks.png");
+	attachTexture("Assets/Textures/YellowBricks_2.png");
 }
 
 void RoadEntity::update(sf::Time delta) {

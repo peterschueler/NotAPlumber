@@ -35,3 +35,6 @@ sf::Vector2f Entity::getVelocity() const {
 void Entity::applyGravity(bool now) {
 	gravityOn = now;
 }
+
+void Entity::animate() {
+}

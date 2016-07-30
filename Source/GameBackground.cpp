@@ -4,7 +4,7 @@
 
 GameBackground::GameBackground(sf::RenderWindow& window) : window(window), viewPort(window.getDefaultView()), bounds(0.f, 0.f, 4000, window.getDefaultView().getSize().y) {
 	std::string skyPath = "Assets/Textures/BlueSky.png";
-	std::string cloudPath = "Assets/Textures/WhiteClouds.png";
+	std::string cloudPath = "Assets/Textures/WhiteClouds_2.png";
 	std::string mountainPath = "Assets/Textures/GreenMountains.png";
 	
 	sf::IntRect rect = sf::IntRect(bounds);

@@ -32,6 +32,7 @@ public:
 	virtual sf::FloatRect borders() const;
 	
 	virtual void applyGravity(bool);
+	virtual void animate();
 	
 	float getGrounded() const;
 	void setGrounded(float);
@@ -48,6 +49,17 @@ public:
 protected:	
 	virtual void attachTexture(std::string);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	
+private:
+	enum AnimationStep {
+		first_x,
+		second_x,
+		third_x,
+		first_y,
+		second_y,
+		third_y
+	};
+	AnimationStep currentStep;
 	
 private:
 	sf::Sprite sprite;

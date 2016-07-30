@@ -29,39 +29,7 @@ bool CompareRoads(RoadEntity* a, RoadEntity* b) {
 bool Game::update(sf::Time delta) {
 	character->update(delta);
 	background.move(character->getVelocity().x * delta.asSeconds(), 0);
-	
-	auto characterWidth = character->getPosition().x + character->borders().width;
-	
-	std::vector<RoadEntity*> roadsToCheck;
-	for (auto road : roads) {
-		auto roadWidth = road->getPosition().x + road->borders().width;
-		auto characterOverFloor = characterWidth >= road->getPosition().x && characterWidth <= roadWidth;
-		if (characterOverFloor) {
-			roadsToCheck.push_back(road);
-		}
-	}
-	
-	if (roadsToCheck.size() == 0) {
-		character->setVelocity(character->getVelocity().x, 100);
-	}
-	
-	for (auto road : roadsToCheck) {
-		if (character->getPosition().y > road->getPosition().y) {
-			continue;
-		}
-		if (character->getPosition().y + 150 < road->getPosition().y) {
-			if (roadsToCheck.size() > 1) {
-				continue;
-			}
-		}
-		auto characterHighground = character->getGrounded() < road->getPosition().y;
-		auto distanceBetweenObjects = road->getPosition().y - (character->getPosition().y + character->borders().height);
-		if (distanceBetweenObjects < 0) {
-			character->setGrounded(road->getPosition().y - character->borders().height);
-		} else if (distanceBetweenObjects > 30 && characterHighground && !character->getJumping()) {
-			character->setVelocity(character->getVelocity().x, 100);
-		}
-	}
+	checkCollision(character);
 	return true;
 }
 
@@ -82,4 +50,39 @@ void Game::addRoadBlock(float x, float y) {
 	RoadEntity* road = new RoadEntity();
 	road->setPosition(x, y);
 	roads.push_back(std::move(road));
+}
+
+void Game::checkCollision(Entity* entity) {
+	auto characterWidth = entity->getPosition().x + entity->borders().width;
+	
+	std::vector<RoadEntity*> roadsToCheck;
+	for (auto road : roads) {
+		auto roadWidth = road->getPosition().x + road->borders().width;
+		auto characterOverFloor = characterWidth >= road->getPosition().x && characterWidth <= roadWidth;
+		if (characterOverFloor) {
+			roadsToCheck.push_back(road);
+		}
+	}
+	
+	if (roadsToCheck.size() == 0) {
+		entity->setVelocity(entity->getVelocity().x, 100);
+	}
+	
+	for (auto road : roadsToCheck) {
+		if (entity->getPosition().y > road->getPosition().y) {
+			continue;
+		}
+		if (entity->getPosition().y + 150 < road->getPosition().y) {
+			if (roadsToCheck.size() > 1) {
+				continue;
+			}
+		}
+		auto characterHighground = entity->getGrounded() < road->getPosition().y;
+		auto distanceBetweenObjects = road->getPosition().y - (entity->getPosition().y + entity->borders().height);
+		if (distanceBetweenObjects < 0) {
+			entity->setGrounded(road->getPosition().y - entity->borders().height);
+		} else if (distanceBetweenObjects > 30 && characterHighground && !entity->getJumping()) {
+			entity->setVelocity(entity->getVelocity().x, 100);
+		}
+	}
 }

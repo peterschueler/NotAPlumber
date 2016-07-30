@@ -16,6 +16,11 @@ public:
 	virtual sf::Vector2f getVelocity() const;
 	
 	virtual void applyGravity(bool);
+	virtual void animate();
+	
+	virtual void setGrounded(float) {};
+	virtual float getGrounded() const {};
+	virtual bool getJumping() const {};
 	
 protected:
 	// if one is overridden, the other one must be overridden as well!
