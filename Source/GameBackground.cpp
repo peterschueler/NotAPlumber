@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-GameBackground::GameBackground(sf::RenderWindow& window) : window(window), viewPort(window.getDefaultView()), bounds(0.f, 0.f, 4000, window.getDefaultView().getSize().y) {
-	std::string skyPath = "Assets/Textures/BlueSky.png";
-	std::string cloudPath = "Assets/Textures/WhiteClouds_2.png";
-	std::string mountainPath = "Assets/Textures/GreenMountains.png";
+GameBackground::GameBackground(sf::RenderWindow& window) : window(window), viewPort(window.getDefaultView()), bounds(0.f, 0.f, 8000, window.getDefaultView().getSize().y) {
+	std::string skyPath = "Assets/Textures/Sky.png";
+	std::string cloudPath = "Assets/Textures/Stars.png";
+	std::string mountainPath = "Assets/Textures/Landscape.png";
 	
 	sf::IntRect rect = sf::IntRect(bounds);
 	if (skyTexture.loadFromFile(skyPath)) {

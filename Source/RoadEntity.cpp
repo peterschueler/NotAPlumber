@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-RoadEntity::RoadEntity() : sprite(), texture(), length(192), height(64) {
+RoadEntity::RoadEntity() : sprite(), texture(), length(96), height(32) {
 	attachTexture("Assets/Textures/YellowBricks.png");
 }
 

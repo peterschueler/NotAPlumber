@@ -22,6 +22,8 @@ public:
 	
 private:
 		void addRoadBlock(float, float);
+		// takes the x and y values of the first one and number of followers
+		void addRoadBlocks(float, float, unsigned int);
 		void checkCollision(Entity*);
 		
 private:

@@ -4,22 +4,32 @@
 #include <string>
 #include <cstdlib>
 
-Game::Game(sf::RenderWindow& window) : window(window), viewPort(window.getDefaultView()), bounds(0.f, 0.f, 4000, window.getDefaultView().getSize().y), background(window) {
+Game::Game(sf::RenderWindow& window) : window(window), viewPort(window.getDefaultView()), bounds(0.f, 0.f, 8000, window.getDefaultView().getSize().y), background(window) {
 	CharacterEntity* entity = new CharacterEntity(CharacterEntity::player, 100);
 	
 	character = std::move(entity);
 	character->setPosition(80, 272);
-	character->setGrounded(272);
+	character->setGrounded(450);
 	
-	for (unsigned int x = 0; x < (192*3); x+= 192) {
-		addRoadBlock(x, 400);
-	}
-	for (unsigned int x = 160; x < (192*3); x+= 192) {
-		addRoadBlock(x, 270);
-	}
-	addRoadBlock(700, 350);
-	addRoadBlock(700+192, 350);
-	addRoadBlock(1200, 200);
+	addRoadBlocks(0,450,12);
+	addRoadBlocks(400,300,5);
+	addRoadBlocks(700,220,8);
+	addRoadBlocks(1200,350,7);
+	addRoadBlocks(1900, 200,7);
+	addRoadBlocks(2200, 350,6);
+	addRoadBlocks(2900,250,4);
+	addRoadBlocks(3200, 500, 12);
+	addRoadBlocks(3700, 300, 4);
+	addRoadBlocks(3400, 400, 2);
+	addRoadBlocks(4000, 420, 6);
+	addRoadBlocks(4800, 420, 5);
+	addRoadBlocks(5000, 100, 12);
+	addRoadBlocks(5100, 300, 8);
+	addRoadBlocks(6000, 400, 2);
+	addRoadBlocks(6300, 370, 2);
+	addRoadBlocks(6500, 250, 2);
+	addRoadBlocks(6700, 180, 2);
+	addRoadBlocks(6900, 500, 4);
 }
 
 bool CompareRoads(RoadEntity* a, RoadEntity* b) {
@@ -50,6 +60,12 @@ void Game::addRoadBlock(float x, float y) {
 	RoadEntity* road = new RoadEntity();
 	road->setPosition(x, y);
 	roads.push_back(std::move(road));
+}
+
+void Game::addRoadBlocks(float _x, float _y, unsigned int _number) {
+	for (unsigned int x = 0; x < (96*_number); x+= 96) {
+		addRoadBlock(_x + x, _y);
+	}
 }
 
 void Game::checkCollision(Entity* entity) {
