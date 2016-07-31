@@ -8,7 +8,8 @@ Menu::Menu(sf::RenderWindow& win) : window(win), bounds(0.f, 0.f, window.getDefa
 		std::cerr << "Sorry, couldn't load your font." << std::endl;
 	}
 	displayText.setFont(font);
-	displayText.setString("");
+	displayText.setString("Welcome to Not A Plumber!\n\n\nA videogame by @peterschueler\n\n\n\n\n\n\t\tPress S to Start\n\n\t\tPress Space for Pause\n\n\t\tPress Q to Quit");
+	displayText.setCharacterSize(20);
 	displayText.setPosition(bounds.left + 100, bounds.top + 100);
 }
 

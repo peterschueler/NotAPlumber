@@ -10,6 +10,7 @@
 #include "GameBackground.hpp"
 #include "Entities/CharacterEntity.hpp"
 #include "Entities/RoadEntity.hpp"
+#include "Entities/FlagpoleEntity.hpp"
 
 class Game : public sf::NonCopyable {
 public:
@@ -38,6 +39,8 @@ private:
 	
 	CharacterEntity* character;
 	float timer;
+	
+	FlagpoleEntity* flagpole;
 };
 
 #endif

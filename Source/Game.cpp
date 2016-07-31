@@ -30,6 +30,11 @@ Game::Game(sf::RenderWindow& window) : window(window), viewPort(window.getDefaul
 	addRoadBlocks(6500, 250, 2);
 	addRoadBlocks(6700, 180, 2);
 	addRoadBlocks(6900, 500, 4);
+	
+	FlagpoleEntity* flag = new FlagpoleEntity();
+	flagpole = std::move(flag);
+	flagpole->setScale(2.f,2.f);
+	flagpole->setPosition(200,500-256);
 }
 
 bool CompareRoads(RoadEntity* a, RoadEntity* b) {
@@ -40,6 +45,9 @@ bool Game::update(sf::Time delta) {
 	character->update(delta);
 	background.move(character->getVelocity().x * delta.asSeconds(), 0);
 	checkCollision(character);
+	if (flagpole->borders().intersects(character->borders())) {
+		flagpole->setOn(true);
+	}
 	return true;
 }
 
@@ -48,7 +56,7 @@ void Game::draw() {
 	for (auto road : roads) {
 		window.draw(*road);
 	}
-	
+	window.draw(*flagpole);
 	window.draw(*character);
 }
 
