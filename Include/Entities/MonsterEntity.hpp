@@ -19,8 +19,14 @@ public:
 	
 	virtual sf::FloatRect borders() const;
 	
+	MonsterEntity::Type getType() const;
+	
+	float getGrounded() const;
+	void setGrounded(float);
+	
 protected:
 	virtual void attachTexture(std::string);
+	void swapAppearance();
 	virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
 	
 private:
@@ -29,8 +35,11 @@ private:
 	
 	sf::Vector2f velocity;
 	sf::Vector2f gravity;
+	float bottom;
 	
 	unsigned int hitpoints;
+	float timer;
+	bool alpha;
 	Type type;
 };
 

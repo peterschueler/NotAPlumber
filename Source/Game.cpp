@@ -13,7 +13,7 @@ Game::Game(sf::RenderWindow& window) : window(window), viewPort(window.getDefaul
 	
 	addRoadBlocks(0,450,12);
 	addRoadBlocks(400,300,5);
-	addRoadBlocks(700,220,8);
+	addRoadBlocks(700,220,5);
 	addRoadBlocks(1200,350,7);
 	addRoadBlocks(1900, 200,7);
 	addRoadBlocks(2200, 350,6);
@@ -47,11 +47,28 @@ bool Game::update(sf::Time delta) {
 	character->update(delta);
 	background.move(character->getVelocity().x * delta.asSeconds(), 0);
 	checkCollision(character);
+	for (auto monster : monsters) {
+		if (monster->getType() == MonsterEntity::Type::monster_crawler) {
+			checkCollision(monster);
+		}
+	}
 	if (flagpole->borders().intersects(character->borders())) {
 		flagpole->setOn(true);
 	}
 	for (auto monster : monsters) {
 		monster->update(delta);
+		if (monster->borders().intersects(character->borders())) {
+			return false;
+		}
+	}
+	if (character->getPosition().x == 2500) {
+		setupMonster(4000, 100, MonsterEntity::Type::monster_crawler);
+		setupMonster(4800, 150, MonsterEntity::Type::monster_crawler);
+		setupMonster(5200, 150, MonsterEntity::Type::monster_crawler);
+	}
+	else if (character->getPosition().x == 3000) {
+		setupMonster(5300, 100, MonsterEntity::Type::monster_crawler);
+		setupMonster(5500, 100, MonsterEntity::Type::monster_crawler);
 	}
 	return true;
 }
@@ -124,6 +141,15 @@ void Game::initMonsters(unsigned int level) {
 	switch (level) {
 		case 1:
 			setupMonster(400, 300, MonsterEntity::Type::monster_flyer);
+			setupMonster(900, 250, MonsterEntity::Type::monster_flyer);
+			setupMonster(2500, 200, MonsterEntity::Type::monster_flyer);
+			setupMonster(2900, 275, MonsterEntity::Type::monster_flyer);
+			setupMonster(4000, 250, MonsterEntity::Type::monster_flyer);
+			setupMonster(7000, 400, MonsterEntity::Type::monster_flyer);
+			
+			setupMonster(800, 150, MonsterEntity::Type::monster_crawler);
+			setupMonster(1500, 150, MonsterEntity::Type::monster_crawler);
+			setupMonster(2450, 100, MonsterEntity::Type::monster_crawler);
 			break;
 		case 2:
 			break;
