@@ -11,7 +11,9 @@ bool MenuState::processInput(sf::Event& event) {
 		} else if (event.type == sf::Event::KeyPressed) {
 			if (event.key.code == sf::Keyboard::Q) {
 				window->close();
-			}
+			} else if (event.key.code == sf::Keyboard::S) {
+			return false;
+		}
 		}
 	}
 	return true;
@@ -23,9 +25,6 @@ bool MenuState::update(sf::Time delta) {
 }
 
 void MenuState::onEntry(State* previousState) {
-	if (previousState != nullptr) {
-// 		delete previousState;
-	}
 }
 
 State* MenuState::onExit() {

@@ -32,7 +32,7 @@ bool GameState::update(sf::Time delta) {
 }
 
 void GameState::onEntry(State* previousState) {
-// 	delete previousState;
+	delete previousState;
 }
 
 State* GameState::onExit() {

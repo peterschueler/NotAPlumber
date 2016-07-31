@@ -14,6 +14,9 @@ public:
 private:
 	sf::RenderWindow& window;
 	sf::FloatRect bounds;
+	
+	sf::Text displayText;
+	sf::Font font;
 };
 
 #endif
