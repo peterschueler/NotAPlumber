@@ -57,14 +57,21 @@ bool Game::update(sf::Time delta) {
 			checkCollision(monster);
 		}
 	}
+	if (character->getPosition().y > 576) {
+		hasWon = false;
+		theme.stop();
+		return false;
+	}
 	if (flagpole->borders().intersects(character->borders())) {
 		flagpole->setOn(true);
 		hasWon = true;
+		theme.stop();
 		return false;
 	}
 	for (auto monster : monsters) {
 		monster->update(delta);
 		if (monster->borders().intersects(character->borders())) {
+			theme.stop();
 			return false;
 		}
 	}

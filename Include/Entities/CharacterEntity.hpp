@@ -67,6 +67,7 @@ private:
 	float bottom;
 	
 	bool isJumping;
+	bool spacebarPressed;
 
 	Direction walkingDirection;
 	

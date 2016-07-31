@@ -6,7 +6,7 @@ CharacterEntity::CharacterEntity() : sprite(), texture(), hitpoints(100) {
 	attachTexture("Assets/Textures/Glitchy.png");
 }
 
-CharacterEntity::CharacterEntity(unsigned int hits) : sprite(), texture(), velocity(sf::Vector2f(0.f, 0.f)), gravity(sf::Vector2f(0.f, 300.f)), gravityOn(false), bottom(200.f), isJumping(false), walkingDirection(still), hitpoints(hits), modification(none), currentStep(first_x) {
+CharacterEntity::CharacterEntity(unsigned int hits) : sprite(), texture(), velocity(sf::Vector2f(0.f, 0.f)), gravity(sf::Vector2f(0.f, 300.f)), gravityOn(false), bottom(200.f), isJumping(false), walkingDirection(still), hitpoints(hits), modification(none), currentStep(first_x), spacebarPressed(false) {
 	attachTexture("Assets/Textures/Glitchy.png");
 }
 
@@ -23,6 +23,8 @@ void CharacterEntity::update(sf::Time delta) {
 		} else if (walkingDirection == left) {
 			velocity.x -= (gravity.y * delta.asSeconds());
 		}
+	} else {
+		spacebarPressed = false;
 	}
 	move(velocity * delta.asSeconds());
 }
@@ -34,7 +36,9 @@ void CharacterEntity::setVelocity(float x, float y) {
 		walkingDirection = left;
 	}
 	velocity.x = x;
-	velocity.y = y;
+	if (!spacebarPressed) {
+		velocity.y = y;
+	}
 	animate();
 }
 
@@ -75,7 +79,10 @@ sf::FloatRect CharacterEntity::borders() const {
 }
 
 void CharacterEntity::applyGravity(bool now) {
-	gravityOn = now;
+	if (!spacebarPressed) {
+		gravityOn = now;
+		spacebarPressed = true;
+	}
 }
 
 void CharacterEntity::animate() {
