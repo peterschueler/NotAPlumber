@@ -5,10 +5,6 @@
 
 class CharacterEntity : public Entity {
 public:
-	enum Type {
-		player,
-		monster
-	};
 	enum Modifier {
 		invicible,
 		superfast,
@@ -22,7 +18,7 @@ public:
 	};
 public:
 	CharacterEntity();
-	CharacterEntity(Type, unsigned int);
+	CharacterEntity(unsigned int);
 	virtual void update(sf::Time);
 	
 	// encompasses walking (+x) and jumping (+y)
@@ -71,9 +67,7 @@ private:
 	float bottom;
 	
 	bool isJumping;
-	
-	Type type;
-	
+
 	Direction walkingDirection;
 	
 	unsigned int hitpoints;

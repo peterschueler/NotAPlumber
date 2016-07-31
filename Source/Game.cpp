@@ -5,7 +5,7 @@
 #include <cstdlib>
 
 Game::Game(sf::RenderWindow& window) : window(window), viewPort(window.getDefaultView()), bounds(0.f, 0.f, 8000, window.getDefaultView().getSize().y), background(window) {
-	CharacterEntity* entity = new CharacterEntity(CharacterEntity::player, 100);
+	CharacterEntity* entity = new CharacterEntity(100);
 	
 	character = std::move(entity);
 	character->setPosition(80, 272);
@@ -34,7 +34,7 @@ Game::Game(sf::RenderWindow& window) : window(window), viewPort(window.getDefaul
 	FlagpoleEntity* flag = new FlagpoleEntity();
 	flagpole = std::move(flag);
 	flagpole->setScale(2.f,2.f);
-	flagpole->setPosition(200,500-256);
+	flagpole->setPosition(7200,500-256);
 }
 
 bool CompareRoads(RoadEntity* a, RoadEntity* b) {
@@ -109,4 +109,21 @@ void Game::checkCollision(Entity* entity) {
 			entity->setVelocity(entity->getVelocity().x, 100);
 		}
 	}
+}
+
+void Game::initMonsters(unsigned int level) {
+	switch (level) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+}
+
+void Game::setupMonster(float x, float y, MonsterEntity::Type type) {
+	auto monster = new MonsterEntity(type, 100);
+	monster->setPosition(x, y);
+	monsters.push_back(std::move(monster));
 }

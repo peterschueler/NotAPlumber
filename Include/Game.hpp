@@ -9,6 +9,7 @@
 #include "Commands/Command.hpp"
 #include "GameBackground.hpp"
 #include "Entities/CharacterEntity.hpp"
+#include "Entities/MonsterEntity.hpp"
 #include "Entities/RoadEntity.hpp"
 #include "Entities/FlagpoleEntity.hpp"
 
@@ -27,6 +28,9 @@ private:
 		void addRoadBlocks(float, float, unsigned int);
 		void checkCollision(Entity*);
 		
+		void initMonsters(unsigned int);
+		void setupMonster(float, float, MonsterEntity::Type);
+		
 private:
 	sf::RenderWindow& window;
 	sf::View viewPort;
@@ -36,6 +40,8 @@ private:
 	sf::Texture roadTexture;
 	
 	GameBackground background;
+	
+	std::vector<MonsterEntity*> monsters;
 	
 	CharacterEntity* character;
 	float timer;

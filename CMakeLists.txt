@@ -16,7 +16,7 @@ CONFIGURE_FILE(
 INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}")
 
 SET(EXECUTABLE_NAME "NotAPlumber")
-ADD_EXECUTABLE(${EXECUTABLE_NAME} Source/Main.cpp Source/Game.cpp Source/Menu.cpp Source/Entity.cpp Source/Settings.cpp Source/GameState.cpp Source/MenuState.cpp Source/Application.cpp Source/InputHandler.cpp Source/MoveCommand.cpp Source/GameBackground.cpp Source/CharacterEntity.cpp Source/ProjectileEntity.cpp Source/ModifierEntity.cpp Source/RoadEntity.cpp Source/JumpCommand.cpp Source/FlagpoleEntity.cpp)
+ADD_EXECUTABLE(${EXECUTABLE_NAME} Source/Main.cpp Source/Game.cpp Source/Menu.cpp Source/Entity.cpp Source/Settings.cpp Source/GameState.cpp Source/MenuState.cpp Source/Application.cpp Source/InputHandler.cpp Source/MoveCommand.cpp Source/GameBackground.cpp Source/CharacterEntity.cpp Source/ProjectileEntity.cpp Source/ModifierEntity.cpp Source/RoadEntity.cpp Source/JumpCommand.cpp Source/FlagpoleEntity.cpp Source/MonsterEntity.cpp)
 
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake_Modules" ${CMAKE_MODULE_PATH})
 

@@ -2,11 +2,11 @@
 
 #include <iostream>
 
-CharacterEntity::CharacterEntity() : sprite(), texture(), hitpoints(100), type(monster) {
+CharacterEntity::CharacterEntity() : sprite(), texture(), hitpoints(100) {
 	attachTexture("Assets/Textures/Glitchy.png");
 }
 
-CharacterEntity::CharacterEntity(Type type, unsigned int hits) : sprite(), texture(), velocity(sf::Vector2f(0.f, 0.f)), gravity(sf::Vector2f(0.f, 300.f)), gravityOn(false), bottom(200.f), isJumping(false), type(type), walkingDirection(still), hitpoints(hits), modification(none), currentStep(first_x) {
+CharacterEntity::CharacterEntity(unsigned int hits) : sprite(), texture(), velocity(sf::Vector2f(0.f, 0.f)), gravity(sf::Vector2f(0.f, 300.f)), gravityOn(false), bottom(200.f), isJumping(false), walkingDirection(still), hitpoints(hits), modification(none), currentStep(first_x) {
 	attachTexture("Assets/Textures/Glitchy.png");
 }
 
