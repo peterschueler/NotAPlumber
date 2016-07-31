@@ -1,13 +1,13 @@
-#ifndef GAME_STATE_HPP
-#define GAME_STATE_HPP
+#ifndef END_STATE_HPP
+#define END_STATE_HPP
 
 #include "State.hpp"
-#include "../Include/Game.hpp"
 #include "../Include/InputHandler.hpp"
+#include "../Include/EndMenu.hpp"
 
-class GameState : public State {
+class EndState : public State {
 public:
-	GameState(sf::RenderWindow&);
+	EndState(sf::RenderWindow&, bool);
 	
 	bool processInput(sf::Event&);
 	bool update(sf::Time);
@@ -15,17 +15,13 @@ public:
 	State* onExit();
 	void render();
 	
-	void setPause();
-	bool getPause();
-	
 private:
 	sf::RenderWindow* window;
 	InputHandler handler;
 	
-	bool isPaused;
-	bool hasWon;
+	bool gameStarted;
 	
-	Game game;
+	EndMenu menu;
 };
 
 #endif

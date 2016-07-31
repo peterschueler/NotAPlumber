@@ -37,6 +37,11 @@ Game::Game(sf::RenderWindow& window) : window(window), viewPort(window.getDefaul
 	flagpole->setPosition(7200,500-256);
 	
 	initMonsters(1);
+	
+	if (!theme.openFromFile("Assets/Music/theme.ogg")) {
+	}
+	theme.setLoop(true);
+	theme.play();
 }
 
 bool CompareRoads(RoadEntity* a, RoadEntity* b) {
@@ -54,21 +59,14 @@ bool Game::update(sf::Time delta) {
 	}
 	if (flagpole->borders().intersects(character->borders())) {
 		flagpole->setOn(true);
+		hasWon = true;
+		return false;
 	}
 	for (auto monster : monsters) {
 		monster->update(delta);
 		if (monster->borders().intersects(character->borders())) {
 			return false;
 		}
-	}
-	if (character->getPosition().x == 2500) {
-		setupMonster(4000, 100, MonsterEntity::Type::monster_crawler);
-		setupMonster(4800, 150, MonsterEntity::Type::monster_crawler);
-		setupMonster(5200, 150, MonsterEntity::Type::monster_crawler);
-	}
-	else if (character->getPosition().x == 3000) {
-		setupMonster(5300, 100, MonsterEntity::Type::monster_crawler);
-		setupMonster(5500, 100, MonsterEntity::Type::monster_crawler);
 	}
 	return true;
 }
@@ -150,6 +148,11 @@ void Game::initMonsters(unsigned int level) {
 			setupMonster(800, 150, MonsterEntity::Type::monster_crawler);
 			setupMonster(1500, 150, MonsterEntity::Type::monster_crawler);
 			setupMonster(2450, 100, MonsterEntity::Type::monster_crawler);
+			setupMonster(4000, 100, MonsterEntity::Type::monster_crawler);
+			setupMonster(4800, 150, MonsterEntity::Type::monster_crawler);
+			setupMonster(5200, 150, MonsterEntity::Type::monster_crawler);
+			setupMonster(5300, 100, MonsterEntity::Type::monster_crawler);
+			setupMonster(5500, 100, MonsterEntity::Type::monster_crawler);
 			break;
 		case 2:
 			break;
@@ -162,4 +165,8 @@ void Game::setupMonster(float x, float y, MonsterEntity::Type type) {
 	auto monster = new MonsterEntity(type, 100);
 	monster->setPosition(x, y);
 	monsters.push_back(std::move(monster));
+}
+
+bool Game::getWon() const {
+	return hasWon;
 }

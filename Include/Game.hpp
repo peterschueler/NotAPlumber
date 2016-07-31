@@ -22,6 +22,8 @@ public:
 	
 	void input(Command*);
 	
+	bool getWon() const;
+	
 private:
 		void addRoadBlock(float, float);
 		// takes the x and y values of the first one and number of followers
@@ -47,6 +49,10 @@ private:
 	float timer;
 	
 	FlagpoleEntity* flagpole;
+	
+	bool hasWon;
+	
+	sf::Music theme;
 };
 
 #endif

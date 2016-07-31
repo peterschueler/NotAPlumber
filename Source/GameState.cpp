@@ -1,8 +1,9 @@
 #include "../Include/States/GameState.hpp"
 #include "../Include/States/MenuState.hpp"
+#include "../Include/States/EndState.hpp"
 
-GameState::GameState(sf::RenderWindow& win) : window(&win), game(win), handler(), isPaused(false) {
-	window->setKeyRepeatEnabled(false);
+GameState::GameState(sf::RenderWindow& win) : window(&win), game(win), handler(), isPaused(false), hasWon(false) {
+// 	window->setKeyRepeatEnabled(false);
 }
 
 bool GameState::processInput(sf::Event& event) {
@@ -24,6 +25,7 @@ bool GameState::processInput(sf::Event& event) {
 bool GameState::update(sf::Time delta) {
 	if (isPaused == false) {
 		if (game.update(delta) == false) {
+			hasWon = game.getWon();
 			return false;
 		}
 		return true;
@@ -36,7 +38,7 @@ void GameState::onEntry(State* previousState) {
 }
 
 State* GameState::onExit() {
-	return new MenuState(*window);
+	return new EndState(*window, hasWon);
 }
 
 void GameState::render() {
