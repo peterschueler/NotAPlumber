@@ -35,6 +35,8 @@ Game::Game(sf::RenderWindow& window) : window(window), viewPort(window.getDefaul
 	flagpole = std::move(flag);
 	flagpole->setScale(2.f,2.f);
 	flagpole->setPosition(7200,500-256);
+	
+	initMonsters(1);
 }
 
 bool CompareRoads(RoadEntity* a, RoadEntity* b) {
@@ -48,6 +50,9 @@ bool Game::update(sf::Time delta) {
 	if (flagpole->borders().intersects(character->borders())) {
 		flagpole->setOn(true);
 	}
+	for (auto monster : monsters) {
+		monster->update(delta);
+	}
 	return true;
 }
 
@@ -58,6 +63,10 @@ void Game::draw() {
 	}
 	window.draw(*flagpole);
 	window.draw(*character);
+	
+	for (auto monster : monsters) {
+		window.draw(*monster);
+	}
 }
 
 void Game::input(Command* command) {
@@ -114,6 +123,7 @@ void Game::checkCollision(Entity* entity) {
 void Game::initMonsters(unsigned int level) {
 	switch (level) {
 		case 1:
+			setupMonster(400, 300, MonsterEntity::Type::monster_flyer);
 			break;
 		case 2:
 			break;

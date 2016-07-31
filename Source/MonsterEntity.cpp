@@ -3,15 +3,18 @@
 #include <iostream>
 
 MonsterEntity::MonsterEntity() : sprite(), texture(), hitpoints(100), type(monster_flyer) {
-	attachTexture("Assets/Textures/monster_flyer.png");
+	attachTexture("Assets/Textures/monsters.png");
+	sprite.setTextureRect(sf::IntRect(0,0,64,64));
 }
 
 MonsterEntity::MonsterEntity(Type type, unsigned int hitpoints) : sprite(), texture(), hitpoints(hitpoints), type(type) {
 	if (type == monster_flyer) {
-		attachTexture("Assets/Textures/monster_flyer.png");
+		attachTexture("Assets/Textures/monsters.png");
+		sprite.setTextureRect(sf::IntRect(0,0,64,64));
 		setVelocity(-100,0);
 	} else if (type == monster_crawler) {
-		attachTexture("Assets/Textures/monster_crawler.png");
+		attachTexture("Assets/Textures/monsters.png");
+		sprite.setTextureRect(sf::IntRect(0,64,64,64));
 	}
 }
 
